@@ -40,7 +40,7 @@ defmodule EventApiWeb.Endpoint do
   plug Plug.Session,
     store: :cookie,
     key: "_event_api_key",
-    signing_salt: "azd3JAxo"
+    signing_salt: "CjrDxyZX"
 
   plug EventApiWeb.Router
 end

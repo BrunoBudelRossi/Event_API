@@ -3,7 +3,7 @@ use Mix.Config
 # Configure your database
 config :event_api, EventApi.Repo,
   username: "postgres",
-  password: "docker",
+  password: "docker", # was postgres
   database: "event_api_dev",
   hostname: "localhost",
   show_sensitive_data_on_connection_error: true,

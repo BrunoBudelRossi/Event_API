@@ -13,7 +13,7 @@ config :event_api,
 # Configures the endpoint
 config :event_api, EventApiWeb.Endpoint,
   url: [host: "localhost"],
-  secret_key_base: "tfzn3zYdGMMmWcrYneUfbCxADkqMxD08NaJ11hdrqB0L1Cch6kgcqFFn4ky+itaj",
+  secret_key_base: "/3cmUPPtF5W8EXQaNzXnI3HYyU2Az5IwS6aIuFLTAMtDXjDaC7Od4zdlqEJJlweA",
   render_errors: [view: EventApiWeb.ErrorView, accepts: ~w(html json)],
   pubsub: [name: EventApi.PubSub, adapter: Phoenix.PubSub.PG2]
 
