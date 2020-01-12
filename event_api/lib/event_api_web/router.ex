@@ -24,5 +24,6 @@ defmodule EventApiWeb.Router do
 
     # POST request
     resources "/events", EventController, only: [:index, :show]
+    resources "/articles", ArticleController, only: [:index, :show]
   end
 end
