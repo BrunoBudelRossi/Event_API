@@ -10,6 +10,8 @@ use Mix.Config
 config :event_api,
   ecto_repos: [EventApi.Repo]
 
+config :phoenix, :json_library, Jason
+
 # Configures the endpoint
 config :event_api, EventApiWeb.Endpoint,
   url: [host: "localhost"],
@@ -22,8 +24,13 @@ config :logger, :console,
   format: "$time $metadata[$level] $message\n",
   metadata: [:request_id]
 
-# Use Jason for JSON parsing in Phoenix
-config :phoenix, :json_library, Jason
+
+config :mime, :types, %{
+  "application/vnd.api+json" => ["json-api"]
+}
+
+config :phoenix, :format_encoders,
+  "json-api": Jason  # doesn't work with Poison
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.

@@ -13,6 +13,11 @@ defmodule EventApiWeb.Router do
     plug :accepts, ["json"]
   end
 
+  pipeline :json_api do
+    plug :accepts, ["json-api"]
+    plug JaSerializer.Deserializer
+  end
+
   # scope "/", EventApiWeb do
   #   pipe_through :browser
 
@@ -20,10 +25,10 @@ defmodule EventApiWeb.Router do
   # end
 
   scope "/api", EventApiWeb do
-    pipe_through :api
+    pipe_through :json_api
 
     # POST request
     resources "/events", EventController, only: [:index, :show]
-    resources "/articles", ArticleController, only: [:index, :show]
+    resources "/articles", ArticleController, only: [:index, :show, :create]
   end
 end

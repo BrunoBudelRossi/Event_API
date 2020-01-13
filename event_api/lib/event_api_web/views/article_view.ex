@@ -1,16 +1,6 @@
 defmodule EventApiWeb.ArticleView do
   use EventApiWeb, :view
-  alias EventApiWeb.ArticleView
+  use JaSerializer.PhoenixView
 
-  def render("index.json", %{articles: articles}) do
-    %{data: render_many(articles, ArticleView, "article.json")}
-  end
-
-  def render("show.json", %{article: article}) do
-    %{data: render_one(article, ArticleView, "article.json")}
-  end
-
-  def render("article.json", %{article: article}) do
-    %{id: article.id}
-  end
+  attributes [:name, :content, :event_id]
 end

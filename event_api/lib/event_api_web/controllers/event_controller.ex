@@ -1,6 +1,5 @@
 defmodule EventApiWeb.EventController do
   use EventApiWeb, :controller
-
   alias EventApi.Management
   alias EventApi.Management.Event
 
@@ -8,7 +7,7 @@ defmodule EventApiWeb.EventController do
 
   def index(conn, _params) do
     events = Management.list_events()
-    render(conn, "index.json", events: events)
+    render(conn, "index.json", data: events)
   end
 
   def create(conn, %{"event" => event_params}) do
@@ -16,20 +15,19 @@ defmodule EventApiWeb.EventController do
       conn
       |> put_status(:created)
       |> put_resp_header("location", Routes.event_path(conn, :show, event))
-      |> render("show.json", event: event)
+      |> render("show.json-api", data: event)
     end
   end
-
   def show(conn, %{"id" => id}) do
     event = Management.get_event!(id)
-    render(conn, "show.json", event: event)
+    render(conn, "show.json-api", data: event)
   end
 
   def update(conn, %{"id" => id, "event" => event_params}) do
     event = Management.get_event!(id)
 
     with {:ok, %Event{} = event} <- Management.update_event(event, event_params) do
-      render(conn, "show.json", event: event)
+      render(conn, "show.json-api", data: event)
     end
   end
 
